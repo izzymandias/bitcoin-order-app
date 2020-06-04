@@ -1,20 +1,26 @@
 language: node_js
 node_js: 
   - node
+
 dist: bionic
 sudo: required
 
+notifications:
+  email:
+    recipients:
+      - hiimdanial@gmail.com
+    on_success: always
+    on_failure: always
 branches:
   only:
-   - master
+   - development
 
 before_script:
   - npm install -g @angular/cli
-  - npm audit fix
+  - npm install -g now
   
 script:
-  - ng lint
-  - ng build --prod --base-href https://kenken64.github.io/bitcoin-order-app/
+  - ng build --prod --base-href https://<your github username>.github.io/bitcoin-order-app/
 
 deploy:
   provider: pages
@@ -22,4 +28,4 @@ deploy:
   github_token: $GITHUB_TOKEN
   local_dir: dist/bitcoin
   on: 
-   branch: master
+   branch: development
